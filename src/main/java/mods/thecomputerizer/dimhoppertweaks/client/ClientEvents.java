@@ -26,9 +26,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import javax.annotation.Nullable;
 import java.util.*;
 
-import static mods.thecomputerizer.dimhoppertweaks.client.render.ClientEffects.COLOR_CORRECTION;
-import static mods.thecomputerizer.dimhoppertweaks.client.render.ClientEffects.GRAYSCALE_SHADER;
-import static mods.thecomputerizer.dimhoppertweaks.client.render.ClientEffects.SCREEN_SHAKE;
 import static mods.thecomputerizer.dimhoppertweaks.core.DHTRef.MODID;
 import static net.minecraft.client.renderer.OpenGlHelper.defaultTexUnit;
 import static net.minecraft.client.renderer.OpenGlHelper.lightmapTexUnit;
@@ -67,10 +64,10 @@ public class ClientEvents {
             float distanceFactor = Objects.nonNull(entityTuple) ?
                     (float)MathHelper.clamp(1d-(entityTuple.getSecond()/32),0d,1d) : 1f;
             distanceFactor = 1f-distanceFactor;
-            COLOR_CORRECTION = distanceFactor;
-            SCREEN_SHAKE = distanceFactor;
+            ClientEffects.COLOR_CORRECTION = distanceFactor;
+            ClientEffects.SCREEN_SHAKE = distanceFactor;
             if(!shaderLoaded) {
-                mc.entityRenderer.loadShader(GRAYSCALE_SHADER);
+                mc.entityRenderer.loadShader(ClientEffects.GRAYSCALE_SHADER);
                 shaderLoaded = true;
             }
             if(ClientEffects.isScreenShaking()) {
